@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://brtdtjqinyhsesiqhkkk.supabase.co; worker-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'"><meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kontora Scan</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#17344a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Kontora Scan">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="../favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="app.css?v=1">
+<script src="app.js?v=1" defer></script>
+</head>
+<body>
+<header class="bar">
+  <div class="brand"><img src="icon-192.png" alt="" width="28" height="28"><span>Kontora Scan</span></div>
+  <button class="icon-btn" id="menu-btn" type="button" aria-haspopup="true" aria-expanded="false" hidden><span aria-hidden="true">⋯</span><span class="sr" data-t="menu">Menü</span></button>
+</header>
+<div class="menu" id="menu" hidden>
+  <p class="menu-info" id="menu-info"></p>
+  <button type="button" id="unpair-btn" class="danger-link" data-t="unpair">Dieses Handy entkoppeln</button>
+</div>
+
+<main>
+  <section id="s-loading" class="screen"><p class="muted" data-t="loading">Wird geladen…</p></section>
+
+  <section id="s-unpaired" class="screen" hidden>
+    <h1 data-t="unpairedTitle">Handy mit Kontora koppeln</h1>
+    <ol class="steps">
+      <li data-t="unpaired1">Öffne Kontora auf deinem PC.</li>
+      <li data-t="unpaired2">Gehe zu Belege → Mit Handy scannen.</li>
+      <li data-t="unpaired3">Scanne den QR-Code mit der Kamera dieses Handys.</li>
+    </ol>
+    <p class="muted" data-t="unpairedNote">Danach kannst du Belege von überall fotografieren – sie landen automatisch in Kontora auf deinem PC.</p>
+  </section>
+
+  <section id="s-home" class="screen" hidden>
+    <p class="paired" id="paired-label"></p>
+    <label class="big-btn" for="cam">
+      <span class="big-icon" aria-hidden="true">📷</span>
+      <span data-t="shoot">Beleg fotografieren</span>
+    </label>
+    <input id="cam" type="file" accept="image/*" capture="environment" hidden>
+    <label class="sec-btn" for="pick"><span data-t="pick">Aus Galerie oder Datei (Foto, PDF)</span></label>
+    <input id="pick" type="file" accept="image/*,application/pdf" multiple hidden>
+
+    <div id="draft" class="card" hidden>
+      <div class="card-head"><strong data-t="draftTitle">Aktueller Beleg</strong><span id="draft-count" class="muted"></span></div>
+      <div class="thumbs" id="draft-thumbs"></div>
+      <div class="row">
+        <label class="sec-btn small" for="cam2"><span data-t="addPage">+ Weitere Seite</span></label>
+        <input id="cam2" type="file" accept="image/*" capture="environment" hidden>
+        <button type="button" class="primary small" id="to-review" data-t="next">Weiter</button>
+      </div>
+    </div>
+
+    <div id="install-hint" class="hint" hidden></div>
+
+    <h2 class="sub" data-t="history">Zuletzt gesendet</h2>
+    <p class="muted" id="history-empty" data-t="historyEmpty">Noch keine Belege gesendet.</p>
+    <ul class="history" id="history"></ul>
+    <p class="muted tiny" id="pc-seen"></p>
+  </section>
+
+  <section id="s-crop" class="screen crop" hidden>
+    <div class="stage" id="stage">
+      <canvas id="crop-canvas"></canvas>
+      <svg id="crop-svg" class="crop-svg" aria-hidden="true"></svg>
+    </div>
+    <p class="crop-tip" data-t="cropTip">Ecken ziehen, bis nur der Beleg im Rahmen ist.</p>
+    <div class="toolbar">
+      <button type="button" class="tool" id="rot-btn"><span aria-hidden="true">↻</span><span data-t="rotate">Drehen</span></button>
+      <button type="button" class="tool" id="full-btn"><span aria-hidden="true">⤢</span><span data-t="full">Ganzes Bild</span></button>
+      <button type="button" class="tool" id="mode-btn"><span aria-hidden="true">◐</span><span id="mode-label" data-t="modeDoc">Dokument</span></button>
+    </div>
+    <div class="row end">
+      <button type="button" class="ghost" id="crop-cancel" data-t="cancel">Verwerfen</button>
+      <button type="button" class="primary" id="crop-ok" data-t="useCrop">Übernehmen</button>
+    </div>
+  </section>
+
+  <section id="s-review" class="screen" hidden>
+    <h1 data-t="reviewTitle">Beleg senden</h1>
+    <div class="thumbs big" id="review-thumbs"></div>
+    <fieldset class="pay">
+      <legend data-t="paidHow">Wie bezahlt?</legend>
+      <label><input type="radio" name="pay" value="BANK" checked> <span data-t="payBank">Karte / Überweisung</span></label>
+      <label><input type="radio" name="pay" value="CASH"> <span data-t="payCash">Bar</span></label>
+    </fieldset>
+    <label class="field"><span data-t="note">Notiz (optional)</span><input id="note" type="text" maxlength="200" autocomplete="off"></label>
+    <div class="row end">
+      <button type="button" class="ghost" id="review-back" data-t="back">Zurück</button>
+      <button type="button" class="primary" id="send-btn" data-t="send">An Kontora senden</button>
+    </div>
+    <p class="muted tiny" data-t="e2e">🔒 Wird auf diesem Handy verschlüsselt. Nur dein PC kann den Beleg öffnen.</p>
+  </section>
+
+  <section id="s-busy" class="screen" hidden><div class="spinner" aria-hidden="true"></div><p id="busy-text" class="muted"></p></section>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
