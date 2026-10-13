@@ -149,3 +149,23 @@ footer a{color:var(--muted)}
 .dl-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
 .print-hint{margin-top:32px}
 .plan .price,.journal td{font-variant-numeric:tabular-nums}
+/* Ratgeber-Seiten */
+.article .lead{font-size:20px;color:var(--ink-2);margin:0 0 8px}
+.article .crumbs{font-size:15px;color:var(--muted);margin:0 0 14px}
+.article .crumbs a{color:var(--muted)}
+.cta-box{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;background:var(--soft);border-radius:14px;padding:18px 20px;margin:26px 0}
+.cta-box span{font-size:15px;color:var(--muted)}
+.article .quote{background:var(--sheet);border-left:4px solid var(--ledger);padding:12px 16px;font-weight:500}
+.article .faq{margin-top:6px}
+.links{display:flex;flex-wrap:wrap;gap:8px 10px;list-style:none;padding:0!important;margin:8px 0 24px}
+.links li{margin:0!important}
+.links a{display:inline-block;border:1px solid var(--rule);border-radius:999px;padding:6px 14px;font-size:15px;text-decoration:none;background:var(--sheet)}
+.links a:hover{border-color:var(--ledger)}
+.hub{list-style:none;padding:0!important;display:grid;gap:12px;margin:20px 0}
+.hub li{margin:0!important}
+.hub a{display:block;background:var(--sheet);border:1px solid var(--rule);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink)}
+.hub a:hover{border-color:var(--ledger)}
+.hub strong{display:block;font-size:19px;margin-bottom:4px}
+.hub span{display:block;font-size:15px;color:var(--muted)}
+.home-guides{display:flex;flex-wrap:wrap;gap:8px 10px;list-style:none;padding:0;margin:18px 0 0}
+.home-guides a{display:inline-block;border:1px solid var(--rule);border-radius:999px;padding:6px 14px;font-size:15px;text-decoration:none;background:var(--sheet)}
