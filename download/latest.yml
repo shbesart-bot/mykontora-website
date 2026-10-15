@@ -1,8 +1,8 @@
-version: 1.1.2
+version: 1.1.3
 files:
-  - url: https://github.com/shbesart-bot/kontora-download/releases/download/v1.1.2/Kontora-Setup-1.1.2.exe
-    sha512: 7YH6NswMjtDlqyld4V55rpBMTYUACwettMIze0+5gpaj3nLoTCd4qJpA4reVXI/2bJHrhzvzlob0iaGwBnpfCQ==
-    size: 164350280
-path: https://github.com/shbesart-bot/kontora-download/releases/download/v1.1.2/Kontora-Setup-1.1.2.exe
-sha512: 7YH6NswMjtDlqyld4V55rpBMTYUACwettMIze0+5gpaj3nLoTCd4qJpA4reVXI/2bJHrhzvzlob0iaGwBnpfCQ==
-releaseDate: '2026-10-14T07:59:12.113Z'
+  - url: https://github.com/shbesart-bot/kontora-download/releases/download/v1.1.3/Kontora-Setup-1.1.3.exe
+    sha512: T3DPYdgn9SvoJ6YjMAVX8d0o4+IQoo4JjtXXdvuAKbULxdAwRcCWV+rAwHXsvdLriEOk0cAzDhFnuY3aI9w+WQ==
+    size: 164859097
+path: https://github.com/shbesart-bot/kontora-download/releases/download/v1.1.3/Kontora-Setup-1.1.3.exe
+sha512: T3DPYdgn9SvoJ6YjMAVX8d0o4+IQoo4JjtXXdvuAKbULxdAwRcCWV+rAwHXsvdLriEOk0cAzDhFnuY3aI9w+WQ==
+releaseDate: '2026-10-14T23:53:05.123Z'
